@@ -23,8 +23,4 @@ public class Doctor {
     private LocalTime startWorkAt;
     @Column(name = "end_work_at")
     private LocalTime endWorkAt;
-
-
-
-
 }

@@ -1,9 +1,7 @@
 package org.example.daos;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 import java.util.List;
 
 public abstract class GenericDao<T,ID> {
@@ -23,7 +21,7 @@ public abstract class GenericDao<T,ID> {
 
             T savedEntity = session.merge(entity);
             transaction.commit();
-            return save(entity);
+            return savedEntity;
         }catch (Exception e){
             transaction.rollback();
             throw  new RuntimeException(e);

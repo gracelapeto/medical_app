@@ -12,8 +12,8 @@ public class HibernateUtils {
             configuration.addAnnotatedClass(Appointment.class);
             configuration.addAnnotatedClass(Doctor.class);
             configuration.addAnnotatedClass(Patient.class);
-            configuration.addAnnotatedClass(Paymant.class);
-            configuration.addAnnotatedClass(Presciption.class);
+            configuration.addAnnotatedClass(Payment.class);
+            configuration.addAnnotatedClass(Prescription.class);
             sessionFactory =configuration.buildSessionFactory();
 
         }

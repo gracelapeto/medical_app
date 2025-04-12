@@ -4,19 +4,17 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "paymants")
+@Table(name = "payments")
 @Data
-
-public class Paymant {
+public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "paymant_date")
-    private LocalDate paymantDate;
+    @Column(name = "payment_date")
+    private LocalDate paymentDate;
     private Double amount;
     private String description;
     @ManyToOne

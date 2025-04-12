@@ -24,7 +24,4 @@ public class Patient {
     private Long contactInfo;
     @Column(name = "medical_history")
     private String medicalHistory;
-
-
-
 }

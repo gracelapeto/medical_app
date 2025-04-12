@@ -3,10 +3,7 @@ package org.example.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.example.static_data.Status;
-
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
 
 @Entity
 @Table(name = "appointments")
@@ -26,7 +23,5 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
-
-
 
 }
