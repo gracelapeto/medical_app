@@ -21,7 +21,7 @@ public class Patient {
     @Column(unique = true)//nuk mund te ket dy pacient me te njejtin Nid
     private Long nid;
     @Column(name = "contact_info")
-    private Long contactInfo;
+    private String contactInfo;
     @Column(name = "medical_history")
     private String medicalHistory;
 }
