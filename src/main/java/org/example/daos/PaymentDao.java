@@ -7,26 +7,24 @@ import java.util.List;
 
 import java.time.LocalDate;
 
-public class PaymentDao {
+public class PaymentDao extends GenericDao<Payment, Long>{
 
     private final Session session;
+    private Transaction transaction;
 
     public PaymentDao(Session session) {
+        super(session, Payment.class);
         this.session = session;
     }
 
     public Payment save(Payment payment) {
-        Transaction transaction = session.beginTransaction();
-        try {
-            session.persist(payment);
-            transaction.commit();
-            return payment;
-        } catch (Exception e) {
-            transaction.rollback();
-            throw new RuntimeException("Nuk u regjistrua pagesa: " + e.getMessage(), e);
-        } finally {
-            session.close();
-        }
+       return super.save(payment);
+    }
+    public List<Payment> findAll() {
+        return super.findAll();
+    }
+    public  Payment findById(Long id) {
+        return super.findById(id);
     }
 
     public List<Payment> findByPatientId(Long patientId) {
@@ -54,8 +52,4 @@ public class PaymentDao {
                 .getResultList();
     }
 
-    public List<Payment> findAll() {
-        return session.createQuery("FROM Payment", Payment.class)
-                .getResultList();
-    }
 }

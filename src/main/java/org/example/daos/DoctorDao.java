@@ -58,21 +58,20 @@ public class DoctorDao extends GenericDao<Doctor, Long> {
             throw new RuntimeException(e);
         }
     }
-    public void delete(Long id) {
-        transaction = session.beginTransaction();
-        try {
-            Doctor doctor = findById(id);
-            session.remove(doctor);
-            transaction.commit();
-        } catch (Exception e) {
-            transaction.rollback();
-            throw new RuntimeException(e);
-        }
-    }
     public List<Doctor> findBySpecialization(String specialization) {
         String hql = "FROM Doctor d WHERE d.specialization LIKE :spec";
         return session.createQuery(hql, Doctor.class)
                 .setParameter("spec", "%" + specialization + "%")
                 .getResultList();
+    }
+
+    public void delete(Long id) {
+        super.delete(id);
+    }
+    public List<Doctor> findAll() {
+        return super.findAll();
+    }
+    public Doctor findById(Long id) {
+        return super.findById(id);
     }
 }

@@ -28,9 +28,11 @@ public abstract class GenericDao<T,ID> {
 
         }
     }
-    protected T findById(ID id){
+    protected T findById(ID id)
+    {
         return session.find(aClass,id);
     }
+
     protected List<T> findAll(){
         String query=String.format("select e from %s e" , aClass.getSimpleName());
         Query<T> findAllQuery=session.createQuery(query,aClass);
