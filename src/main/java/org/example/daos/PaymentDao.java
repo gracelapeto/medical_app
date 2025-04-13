@@ -1,5 +1,6 @@
 package org.example.daos;
 
+import org.example.entities.Patient;
 import org.example.entities.Payment;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,14 +11,18 @@ import java.time.LocalDate;
 public class PaymentDao extends GenericDao<Payment, Long>{
 
     private final Session session;
+    private final  PatientDao patientDao;
     private Transaction transaction;
 
-    public PaymentDao(Session session) {
+    public PaymentDao(Session session, PatientDao patientDao, Transaction transaction) {
         super(session, Payment.class);
         this.session = session;
+        this.patientDao = patientDao;
+        this.transaction = transaction;
     }
 
-    public Payment save(Payment payment) {
+    public Payment save(Payment payment,  Long patientId) {
+        Patient patient = patientDao.findById(patientId);
        return super.save(payment);
     }
     public List<Payment> findAll() {

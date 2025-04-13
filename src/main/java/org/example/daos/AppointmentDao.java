@@ -1,8 +1,8 @@
 package org.example.daos;
 
-import org.example.config.HibernateUtils;
 import org.example.entities.Appointment;
-import org.example.entities.Payment;
+import org.example.entities.Doctor;
+import org.example.entities.Patient;
 import org.example.static_data.Status;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -12,15 +12,24 @@ import java.util.List;
 public class AppointmentDao extends GenericDao<Appointment, Long> {
 
     private final Session session;
+    private final DoctorDao doctorDao;
+    private final PatientDao patientDao;
     private Transaction transaction;
 
-    protected AppointmentDao(Session session, Class<Appointment> aClass) {
-        super(session, aClass);
+    public AppointmentDao(Session session, DoctorDao doctorDao, PatientDao patientDao) {
+        super(session, Appointment.class);
         this.session = session;
+        this.doctorDao = doctorDao;
+        this.patientDao = patientDao;
     }
 
 
-    public Appointment save(Appointment appointment) {
+    public Appointment save(Appointment appointment, Long doctorId, Long patientId) {
+        Doctor doctor = doctorDao.findById(doctorId);
+        Patient patient = patientDao.findById(patientId);
+        appointment.setDoctor(doctor);
+        appointment.setPatient(patient);
+        appointment.setStatus(Status.NE_PROCES);
         return super.save(appointment);
     }
 

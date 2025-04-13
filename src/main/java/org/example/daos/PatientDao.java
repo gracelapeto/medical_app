@@ -14,6 +14,7 @@ public class PatientDao extends GenericDao<Patient,Long> {
         super(session,Patient.class);
         this.session=session;
 
+
     }
     public Patient save(Patient patient){
 

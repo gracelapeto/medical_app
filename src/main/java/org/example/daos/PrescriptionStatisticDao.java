@@ -1,5 +1,6 @@
 package org.example.daos;
 
+import org.example.models.PrescriptionStatistic;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -11,12 +12,12 @@ public class PrescriptionStatisticDao {
     public PrescriptionStatisticDao(Session session) {
         this.session = session;
     }
-        public List<Object[]> getMostPrescribedMedicines() {
+        public List<PrescriptionStatistic> getMostPrescribedMedicines() {
             String hql = "SELECT p.medicines, COUNT(p) " +
                     "FROM Prescription p " +
                     "GROUP BY p.medicines " +
                     "ORDER BY COUNT(p) DESC";
-            return session.createQuery(hql, Object[].class).getResultList();
+            return session.createQuery(hql, PrescriptionStatistic.class).getResultList();
         }
     }
 
